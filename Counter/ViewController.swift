@@ -9,12 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var currentValue: Int = 0 {
+    private var currentValue: Int = 0 {
         didSet {
             counterLabel.text = "Значение счётчика: \(currentValue)"
         }
     }
-
+    
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
@@ -27,16 +27,10 @@ class ViewController: UIViewController {
         
         counterLabel.text = String(currentValue)
         historyTextView.isEditable = false
-//        historyTextView.isSelectable = false
         historyTextView.text = "История изменений:\n"
         historyTextView.layer.cornerRadius = 20
         historyTextView.layer.masksToBounds = true
         historyTextView.isScrollEnabled = true
-    }
-    
-    func printHistoryTextView (_ message: String) {
-        historyTextView.text.append(Date().dateAndTime)
-        historyTextView.text.append(message)
     }
     
     @IBAction func plusCounterOnTap(_ sender: Any) {
@@ -63,5 +57,10 @@ class ViewController: UIViewController {
         if let range = historyTextView.selectedTextRange {
             historyTextView.replace(range, withText: "")
         }
+    }
+    
+    private func printHistoryTextView (_ message: String) {
+        historyTextView.text.append(Date().dateAndTime)
+        historyTextView.text.append(message)
     }
 }
