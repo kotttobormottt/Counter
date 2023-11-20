@@ -62,5 +62,6 @@ class ViewController: UIViewController {
     private func printHistoryTextView (_ message: String) {
         historyTextView.text.append(Date().dateAndTime)
         historyTextView.text.append(message)
+        historyTextView.scrollToBottom()
     }
 }
